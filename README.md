@@ -1,100 +1,61 @@
-# Novoanalytics — AI Trade Intelligence Dashboard
+# NOVO — AI-Driven Cross-Border Trade Intelligence Platform
+### MBIS5015 Capstone Project | Group 5 | Australian Institute of Higher Education
 
-A Django/Bootstrap 5 dashboard for cross-border aluminium trade analysis.
-Built for Novoanalytics, Sydney AU.
+## What this project does
+A Django web application that helps Australian construction firms source aluminium
+more cost-effectively from India instead of China. Features real ML clustering,
+Claude AI integration, and 12 interactive analysis modules.
 
----
+## Tech stack
+- **Backend:** Django 4.2, Python 3.11
+- **ML:** scikit-learn (k-means, PCA, StandardScaler), pandas, numpy
+- **Frontend:** Bootstrap 5.3, Chart.js 4.4
+- **AI:** Claude claude-sonnet-4-6 via Anthropic API
+- **Deployment:** Railway / Render / PythonAnywhere
 
-## Quick Start
-
-### 1. Install dependencies
+## Quick start (local)
 ```bash
 pip install -r requirements.txt
-```
-
-### 2. Run migrations (optional — no models required)
-```bash
 python manage.py migrate
-```
-
-### 3. Start the server
-```bash
 python manage.py runserver
+# Open http://127.0.0.1:8000
 ```
 
-### 4. Open in browser
-```
-http://127.0.0.1:8000
-```
-
----
-
-## Features
-
-| Tab | Description |
-|-----|-------------|
-| Overview | KPI cards, import mix, LME prices, AU trade partners |
-| AU Imports | Product breakdown, H1/H2 comparison, extrusion opportunity |
-| Price Analysis | LME history, YoY volatility, China vs India cost comparison |
-| India Suppliers | Capacity ranking, risk vs price scatter, India export growth |
-| AU Construction | Market segments, demand vs growth bubble, segment demand chart |
-| AI Cost-Benefit | Platform saving model, cost comparison, saving distribution |
-| Risk Analysis | Risk heatmap, category distribution, AI coverage radar |
-| Data Tables | Browse all datasets, sort by column, export to CSV |
-
-## Upload Your Own Data
-
-- Click the **upload zone** in the left sidebar
-- Supports **.xlsx**, **.xls**, **.csv** files
-- First row must be column headers
-- Data appears instantly in the Data Tables tab
-
-## Data Sources
-
-| Dataset | Type | Source |
-|---------|------|--------|
-| AU Aluminium Imports 2024 | **Real** | Australian Aluminium Council / ABS |
-| LME Price History | **Real** | LME / World Bank / Statista |
-| AU Trade Partners | **Real** | ABS International Trade Supplementary |
-| Anti-Dumping Events | **Real** | AU Anti-Dumping Commission |
-| India Suppliers | Estimated | Industry reports |
-| Risk Indicators | Mixed | AU Anti-Dumping Commission + analysis |
-| Construction Market | Estimated | Industry analysis |
-| Price Comparison | Estimated | Market analysis |
-| AI Cost-Benefit Model | Estimated | Project brief + analysis |
-
-## Project Structure
-
-```
-novoanalytics/
-├── manage.py
-├── requirements.txt
-├── README.md
-├── novoanalytics/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-└── dashboard/
-    ├── views.py          ← All data & upload logic
-    ├── urls.py
-    ├── templates/
-    │   └── dashboard/
-    │       └── index.html
-    └── static/
-        └── dashboard/
-            ├── css/style.css
-            └── js/charts.js
+## Deploy to Railway
+```bash
+npm install -g @railway/cli
+railway login
+railway init
+railway up
 ```
 
-## Tech Stack
+## Deploy to Render
+Connect your GitHub repo at render.com
+Start command: gunicorn novoanalytics.wsgi:application
 
-- **Backend**: Django 4.2 (Python)
-- **Frontend**: Bootstrap 5.3 + Bootstrap Icons
-- **Charts**: Chart.js 4.4
-- **Fonts**: DM Sans + Space Grotesk (Google Fonts)
-- **File parsing**: openpyxl (Excel), csv (built-in)
+## AI Advisor tab
+Enter your Claude API key (from console.anthropic.com) in the AI Advisor tab.
+The key is never stored server-side — used only for the current session.
 
-## Customisation
+## K-Means Clustering
+Real scikit-learn k-means on 20 suppliers (6 features) and 10 construction
+segments (6 features). Adjust k with the slider, switch between supplier and
+segment mode, view elbow chart, PCA scatter, radar chart, and cluster cards.
 
-To add a new default dataset, add an entry to the `DEFAULT_DATASETS` dict in `dashboard/views.py`.
-Each entry needs: `label`, `source`, `type`, `headers`, `rows`, and optionally `chart`.
+## Dashboard tabs
+1. Overview — KPI cards, import mix, LME trend, trade partners
+2. AU Imports — product breakdown, H1/H2, opportunity sizing
+3. Price Analysis — LME history, YoY volatility, China vs India comparison
+4. K-Means Clustering — real ML, elbow, PCA scatter, cluster cards
+5. India Suppliers — capacity bar, risk scatter, export growth
+6. AU Construction — segment mix, bubble chart, demand+growth
+7. AI Cost-Benefit — with/without AI comparison, saving donut
+8. Risk Analysis — heatmap, category donut, AI coverage radar
+9. Opportunity Scores — country score cards, trend lines, divergence
+10. India Profit Calculator — 6 sliders, profit zone chart, waterfall
+11. AI Trade Advisor — Claude AI chat + dataset analyser
+12. Data Tables — sortable, CSV export, file upload
+
+## Team
+Group 5: Karuna Chapagain, Janak Chapagain, Nishan Bhujel, G M Rafi, Asmita Kunwar
+Client: Sangeeta Aditya — NovoAnalytics, Sydney AU

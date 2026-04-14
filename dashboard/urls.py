@@ -8,4 +8,7 @@ urlpatterns = [
     path('api/table-data/', views.table_data, name='table_data'),
     path('api/opportunity-scores/', views.opportunity_scores, name='opportunity_scores'),
     path('api/profit-calc/', views.profit_calc, name='profit_calc'),
+    path('api/kmeans/', views.run_kmeans, name='run_kmeans'),
+    path('api/ai-chat/', views.ai_chat, name='ai_chat'),
+    path('api/analyse-dataset/', views.analyse_dataset, name='analyse_dataset'),
 ]

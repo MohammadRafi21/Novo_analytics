@@ -3,10 +3,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Novoanalytics — AI Trade Intelligence Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -17,23 +16,21 @@
 <div class="sidebar" id="sidebar">
   <div class="sidebar-brand">
     <div class="brand-logo">NA</div>
-    <div>
-      <div class="brand-title">Novoanalytics</div>
-      <div class="brand-sub">Trade Intelligence</div>
-    </div>
+    <div><div class="brand-title">Novoanalytics</div><div class="brand-sub">AI Trade Intelligence</div></div>
   </div>
-
   <div class="sidebar-section-label">Navigation</div>
   <nav class="sidebar-nav">
     <a href="#" class="nav-item active" data-tab="overview"><i class="bi bi-grid-1x2"></i> Overview</a>
     <a href="#" class="nav-item" data-tab="imports"><i class="bi bi-box-seam"></i> AU Imports</a>
     <a href="#" class="nav-item" data-tab="prices"><i class="bi bi-graph-up"></i> Price Analysis</a>
+    <a href="#" class="nav-item nav-highlight" data-tab="kmeans"><i class="bi bi-diagram-3"></i> K-Means Clustering</a>
     <a href="#" class="nav-item" data-tab="suppliers"><i class="bi bi-building"></i> India Suppliers</a>
     <a href="#" class="nav-item" data-tab="market"><i class="bi bi-bar-chart"></i> AU Construction</a>
-    <a href="#" class="nav-item" data-tab="cost"><i class="bi bi-cpu"></i> AI Cost-Benefit</a>
+    <a href="#" class="nav-item" data-tab="cost"><i class="bi bi-calculator"></i> AI Cost-Benefit</a>
     <a href="#" class="nav-item" data-tab="risk"><i class="bi bi-shield-exclamation"></i> Risk Analysis</a>
-    <a href="#" class="nav-item nav-item-new" data-tab="opportunity"><i class="bi bi-trophy"></i> Opportunity Scores</a>
-    <a href="#" class="nav-item nav-item-new" data-tab="profit"><i class="bi bi-currency-dollar"></i> India Profit Calc</a>
+    <a href="#" class="nav-item" data-tab="opportunity"><i class="bi bi-trophy"></i> Opportunity Scores</a>
+    <a href="#" class="nav-item" data-tab="profit"><i class="bi bi-currency-dollar"></i> Profit Calculator</a>
+    <a href="#" class="nav-item nav-highlight" data-tab="aichat"><i class="bi bi-robot"></i> AI Advisor</a>
     <a href="#" class="nav-item" data-tab="data"><i class="bi bi-table"></i> Data Tables</a>
   </nav>
 
@@ -41,43 +38,20 @@
   <div class="upload-zone" id="uploadZone">
     <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" hidden>
     <i class="bi bi-cloud-upload fs-4 text-primary"></i>
-    <div class="mt-1 fw-500" style="font-size:13px">Drop file or click</div>
-    <div style="font-size:11px;color:#8a95a3">.xlsx &nbsp;.xls &nbsp;.csv</div>
+    <div style="font-size:12px;font-weight:500;margin-top:4px">Drop file or click</div>
+    <div style="font-size:10px;color:#8a95a3">.xlsx &nbsp;.xls &nbsp;.csv</div>
   </div>
   <div id="uploadStatus" class="mt-2 px-2" style="font-size:11px"></div>
 
   <div class="sidebar-section-label mt-3">Datasets</div>
-  <div class="sidebar-section-label" style="font-size:9px;padding-top:2px;padding-bottom:6px;letter-spacing:0">
-    <span class="real-indicator me-2"></span>Real &nbsp;&nbsp;<span class="est-indicator me-1"></span>Estimated
-  </div>
   <div id="datasetList">
-    <div class="dataset-item active" data-key="au_imports" data-type="real">
-      <span class="ds-dot real"></span><span class="ds-name">AU Imports 2024</span><span class="badge-type real">Real</span>
-    </div>
-    <div class="dataset-item" data-key="lme_prices" data-type="real">
-      <span class="ds-dot real"></span><span class="ds-name">LME Prices</span><span class="badge-type real">Real</span>
-    </div>
-    <div class="dataset-item" data-key="au_partners" data-type="real">
-      <span class="ds-dot real"></span><span class="ds-name">AU Trade Partners</span><span class="badge-type real">Real</span>
-    </div>
-    <div class="dataset-item" data-key="india_suppliers" data-type="estimated">
-      <span class="ds-dot est"></span><span class="ds-name">India Suppliers</span><span class="badge-type est">Est</span>
-    </div>
-    <div class="dataset-item" data-key="risk_indicators" data-type="mixed">
-      <span class="ds-dot mixed"></span><span class="ds-name">Risk Indicators</span><span class="badge-type mixed">Mixed</span>
-    </div>
-    <div class="dataset-item" data-key="construction_market" data-type="estimated">
-      <span class="ds-dot est"></span><span class="ds-name">AU Construction</span><span class="badge-type est">Est</span>
-    </div>
-    <div class="dataset-item" data-key="price_comparison" data-type="estimated">
-      <span class="ds-dot est"></span><span class="ds-name">Price Comparison</span><span class="badge-type est">Est</span>
-    </div>
-    <div class="dataset-item" data-key="ai_cost_benefit" data-type="estimated">
-      <span class="ds-dot est"></span><span class="ds-name">AI Cost-Benefit</span><span class="badge-type est">Est</span>
-    </div>
-    <div class="dataset-item" data-key="opportunity_scores" data-type="estimated">
-      <span class="ds-dot est"></span><span class="ds-name">Opportunity Scores</span><span class="badge-type est">Model</span>
-    </div>
+    <div class="dataset-item active" data-key="au_imports" data-type="real"><span class="ds-dot real"></span><span class="ds-name">AU Imports 2024</span><span class="badge-type real">Real</span></div>
+    <div class="dataset-item" data-key="lme_prices" data-type="real"><span class="ds-dot real"></span><span class="ds-name">LME Prices</span><span class="badge-type real">Real</span></div>
+    <div class="dataset-item" data-key="au_partners" data-type="real"><span class="ds-dot real"></span><span class="ds-name">AU Trade Partners</span><span class="badge-type real">Real</span></div>
+    <div class="dataset-item" data-key="supplier_kmeans" data-type="ml"><span class="ds-dot ml"></span><span class="ds-name">Supplier K-Means</span><span class="badge-type ml">ML</span></div>
+    <div class="dataset-item" data-key="construction_kmeans" data-type="ml"><span class="ds-dot ml"></span><span class="ds-name">Segments K-Means</span><span class="badge-type ml">ML</span></div>
+    <div class="dataset-item" data-key="price_comparison" data-type="estimated"><span class="ds-dot est"></span><span class="ds-name">Price Comparison</span><span class="badge-type est">Est</span></div>
+    <div class="dataset-item" data-key="ai_cost_benefit" data-type="estimated"><span class="ds-dot est"></span><span class="ds-name">AI Cost-Benefit</span><span class="badge-type est">Est</span></div>
   </div>
 </div>
 
@@ -85,29 +59,20 @@
   <div class="topbar">
     <div class="d-flex align-items-center gap-3">
       <button class="btn btn-sm btn-light d-md-none" id="sidebarToggle"><i class="bi bi-list fs-5"></i></button>
-      <div>
-        <span class="topbar-title" id="pageTitle">Overview</span>
-        <span class="topbar-sub ms-2 d-none d-md-inline">AI-Driven Cross-Border Trade Platform</span>
-      </div>
+      <div><span class="topbar-title" id="pageTitle">Overview</span><span class="topbar-sub ms-2 d-none d-md-inline">AI-Driven Cross-Border Trade Intelligence</span></div>
     </div>
     <div class="d-flex align-items-center gap-2">
-      <div class="real-data-legend d-none d-md-flex">
-        <span class="rdl-dot real"></span><span class="rdl-text">Verified real data</span>
-        <span class="rdl-dot est ms-2"></span><span class="rdl-text">Estimated / modelled</span>
-      </div>
-      <span class="badge bg-success-subtle text-success px-3 py-2" style="font-size:11px"><i class="bi bi-circle-fill me-1" style="font-size:7px"></i>Live</span>
-      <span class="text-muted d-none d-lg-inline" style="font-size:12px">Novoanalytics &bull; Sydney, AU</span>
+      {% if ml_available %}<span class="badge bg-success-subtle text-success px-2 py-1" style="font-size:10px"><i class="bi bi-cpu-fill me-1"></i>ML Active</span>{% endif %}
+      <span class="badge bg-success-subtle text-success px-2 py-1" style="font-size:10px"><i class="bi bi-circle-fill me-1" style="font-size:7px"></i>Live</span>
+      <span class="text-muted d-none d-lg-inline" style="font-size:11px">Novoanalytics · Sydney AU</span>
     </div>
   </div>
 
   <div class="content-area">
 
-    <!-- ── OVERVIEW ── -->
+    <!-- OVERVIEW -->
     <div class="tab-pane active" id="tab-overview">
-      <div class="insight-alert mb-4">
-        <i class="bi bi-lightbulb-fill me-2 text-warning"></i>
-        <strong>Key strategic insight:</strong> Australia imposed anti-dumping duties on Chinese aluminium extrusions (ADN 2023/051, Sept 2023). India — the world's 4th largest aluminium exporter — scores <strong>8.7/10</strong> on our opportunity model, the highest of all supplier countries, and offers a <strong>20%+ landed cost advantage</strong> over China.
-      </div>
+      <div class="insight-alert mb-4"><i class="bi bi-lightbulb-fill me-2 text-warning"></i><strong>Key insight:</strong> Anti-dumping duties on Chinese aluminium extrusions (ADN 2023/051, Sept 2023) create a direct sourcing gap. India — world's 4th largest aluminium exporter — scores <strong>8.73/10</strong> on the NOVO opportunity model and offers a <strong>20%+ landed cost advantage</strong> over China. K-means clustering (k=4, silhouette=0.45) confirms India suppliers form a distinct cost-competitive cluster.</div>
       <div class="row g-3 mb-4">
         {% for kpi in kpis %}
         <div class="col-6 col-md-4 col-xl-2">
@@ -115,381 +80,253 @@
             <div class="kpi-icon"><i class="bi {{ kpi.icon }}"></i></div>
             <div class="kpi-label">{{ kpi.label }}</div>
             <div class="kpi-value {% if kpi.trend == 'warning' %}text-danger{% elif kpi.trend == 'up' %}text-success{% endif %}">{{ kpi.value }}</div>
-            <div class="kpi-change {% if kpi.trend == 'up' %}up{% elif kpi.trend == 'warning' %}warn{% endif %}">
-              {% if kpi.trend == 'up' %}<i class="bi bi-arrow-up-short"></i>{% elif kpi.trend == 'warning' %}<i class="bi bi-exclamation-circle"></i>{% endif %}
-              {{ kpi.change }}
-            </div>
+            <div class="kpi-change {% if kpi.trend == 'up' %}up{% elif kpi.trend == 'warning' %}warn{% endif %}">{{ kpi.change }}</div>
             <div class="kpi-source">{{ kpi.source }}</div>
           </div>
         </div>
         {% endfor %}
       </div>
       <div class="row g-3">
-        <div class="col-md-5">
-          <div class="chart-card h-100 real-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">AU aluminium import mix 2024</div><div class="chart-sub">By product weight — ABS/AAC</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span>
+        <div class="col-md-5"><div class="chart-card h-100 real-card"><div class="chart-card-header"><div><div class="chart-title">AU aluminium import mix 2024</div><div class="chart-sub">By product weight — ABS/AAC</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span></div><div class="chart-legend" id="legend-mix"></div><div class="chart-wrap" style="height:240px"><canvas id="overviewMixChart"></canvas></div></div></div>
+        <div class="col-md-7"><div class="chart-card h-100 real-card"><div class="chart-card-header"><div><div class="chart-title">LME aluminium price trend 2019–2024</div><div class="chart-sub">Annual average USD/tonne vs AUD/tonne</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span></div><div class="chart-wrap" style="height:240px"><canvas id="overviewPriceChart"></canvas></div></div></div>
+        <div class="col-12"><div class="chart-card real-card"><div class="chart-card-header"><div><div class="chart-title">Australia total goods imports by key partner (AUD billions)</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span></div><div class="chart-legend" id="legend-partners"></div><div class="chart-wrap" style="height:260px"><canvas id="overviewPartnersChart"></canvas></div></div></div>
+      </div>
+    </div>
+
+    <!-- K-MEANS CLUSTERING -->
+    <div class="tab-pane" id="tab-kmeans">
+      <div class="insight-alert mb-3" style="border-color:#6f42c1;background:#f3f0ff"><i class="bi bi-diagram-3-fill me-2" style="color:#6f42c1"></i><strong>Real ML model:</strong> K-Means clustering using <strong>scikit-learn</strong> on {{ supplier_count }} suppliers (6 features) and {{ segment_count }} construction segments (6 features). Features standardised with <code>StandardScaler</code>. PCA (2 components) used for 2D visualisation. Silhouette score measures cluster quality (0=random, 1=perfect). Elbow method shows optimal k.</div>
+
+      <div class="row g-3 mb-3" id="kmeans-kpis">
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon" style="color:#6f42c1"><i class="bi bi-diagram-3"></i></div><div class="kpi-label">Algorithm</div><div class="kpi-value" style="font-size:16px">K-Means++</div><div class="kpi-source">scikit-learn 1.3</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon" style="color:#6f42c1"><i class="bi bi-collection"></i></div><div class="kpi-label">Clusters (k)</div><div class="kpi-value" style="color:#6f42c1" id="kpi-k">4</div><div class="kpi-source">Optimal by elbow</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-success"><i class="bi bi-check-circle"></i></div><div class="kpi-label">Silhouette Score</div><div class="kpi-value text-success" id="kpi-sil">—</div><div class="kpi-source">0=random, 1=perfect</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-arrow-down-circle"></i></div><div class="kpi-label">Inertia (WCSS)</div><div class="kpi-value" id="kpi-inertia">—</div><div class="kpi-source">Within-cluster sum sq.</div></div></div>
+      </div>
+
+      <div class="chart-card mb-3">
+        <div class="chart-card-header flex-wrap gap-2">
+          <div><div class="chart-title">K-Means clustering engine</div><div class="chart-sub">Run the model, adjust k, switch between supplier and segment clustering</div></div>
+          <div class="d-flex gap-2 flex-wrap align-items-center">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-outline-secondary active" id="modeSupplierBtn" onclick="setKMeansMode('supplier')">Supplier clusters</button>
+              <button class="btn btn-outline-secondary" id="modeSegmentBtn" onclick="setKMeansMode('segments')">Segment clusters</button>
             </div>
-            <div class="chart-legend" id="legend-mix"></div>
-            <div class="chart-wrap" style="height:240px"><canvas id="overviewMixChart"></canvas></div>
+            <div class="d-flex align-items-center gap-2">
+              <label style="font-size:12px;color:var(--bs-secondary-color)">k =</label>
+              <input type="range" id="kSlider" min="2" max="8" value="4" step="1" style="width:100px" oninput="document.getElementById('kVal').textContent=this.value">
+              <span id="kVal" style="font-size:12px;font-weight:500;min-width:14px">4</span>
+            </div>
+            <button class="btn btn-sm btn-primary" onclick="runKMeans()"><i class="bi bi-play-fill me-1"></i>Run K-Means</button>
           </div>
         </div>
-        <div class="col-md-7">
-          <div class="chart-card h-100 real-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">LME aluminium price trend 2019–2024</div><div class="chart-sub">Annual average USD/tonne — LME / World Bank</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span>
+        <div id="kmeans-loading" class="text-center py-4" style="display:none"><div class="spinner-border spinner-border-sm text-primary me-2"></div><span style="font-size:13px">Running k-means clustering...</span></div>
+      </div>
+
+      <div id="kmeans-results" style="display:none">
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <div class="chart-card h-100">
+              <div class="chart-card-header"><div><div class="chart-title">Elbow method — optimal k</div><div class="chart-sub">WCSS (inertia) vs number of clusters</div></div></div>
+              <div class="chart-wrap" style="height:240px"><canvas id="elbowChart"></canvas></div>
             </div>
-            <div class="chart-wrap" style="height:240px"><canvas id="overviewPriceChart"></canvas></div>
+          </div>
+          <div class="col-md-6">
+            <div class="chart-card h-100">
+              <div class="chart-card-header"><div><div class="chart-title">PCA scatter — cluster visualisation</div><div class="chart-sub">2D projection of standardised feature space</div></div></div>
+              <div class="chart-wrap" style="height:240px"><canvas id="scatterChart"></canvas></div>
+            </div>
           </div>
         </div>
-        <div class="col-12">
-          <div class="chart-card real-card">
+
+        <div class="chart-card mb-3">
+          <div class="chart-card-header"><div><div class="chart-title">Cluster comparison — mean feature values</div><div class="chart-sub">Average metrics per cluster (standardised)</div></div></div>
+          <div class="chart-legend" id="legend-radar-km"></div>
+          <div class="chart-wrap" style="height:280px"><canvas id="clusterRadarChart"></canvas></div>
+        </div>
+
+        <div class="row g-3 mb-3" id="clusterCards"></div>
+
+        <div class="chart-card">
+          <div class="chart-card-header"><div><div class="chart-title">Cluster member details</div><div class="chart-sub">All suppliers/segments with their assigned cluster</div></div></div>
+          <div class="table-responsive"><table class="table table-sm table-hover data-table" id="kmeansTable"><thead id="kmeansTableHead"></thead><tbody id="kmeansTableBody"></tbody></table></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI ADVISOR -->
+    <div class="tab-pane" id="tab-aichat">
+      <div class="insight-alert mb-3" style="border-color:#198754;background:#f0faf5"><i class="bi bi-robot me-2 text-success"></i><strong>AI Advisor powered by Claude:</strong> Ask anything about the trade data, cluster results, supplier recommendations, cost analysis, or procurement strategy. The AI has full context of the NOVO platform data.</div>
+
+      <div class="row g-3">
+        <div class="col-md-8">
+          <div class="chart-card h-100" style="display:flex;flex-direction:column">
             <div class="chart-card-header">
-              <div><div class="chart-title">Australia total goods imports by key partner</div><div class="chart-sub">AUD billions, financial year — ABS International Trade</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span>
+              <div><div class="chart-title">NOVO AI trade advisor</div><div class="chart-sub">Powered by Claude — ask about suppliers, clusters, costs, risks</div></div>
+              <button class="btn btn-sm btn-outline-secondary" onclick="clearChat()"><i class="bi bi-trash me-1"></i>Clear</button>
             </div>
-            <div class="chart-legend" id="legend-partners"></div>
-            <div class="chart-wrap" style="height:260px"><canvas id="overviewPartnersChart"></canvas></div>
+            <div id="chatMessages" style="flex:1;overflow-y:auto;min-height:320px;max-height:420px;padding:8px;display:flex;flex-direction:column;gap:10px;border:0.5px solid var(--bs-border-color);border-radius:8px;background:var(--bs-body-bg)">
+              <div class="chat-msg assistant"><div class="chat-bubble"><strong>NOVO AI:</strong> Hello! I'm your AI trade intelligence advisor. I have full context of your platform data including the k-means clustering results, supplier intelligence, LME price history, and the India vs China analysis. What would you like to know?</div></div>
+            </div>
+            <div class="d-flex gap-2 mt-2">
+              <input type="text" id="chatInput" class="form-control form-control-sm" placeholder="Ask about suppliers, clusters, costs, risks..." onkeydown="if(event.key==='Enter')sendChat()">
+              <button class="btn btn-sm btn-primary" onclick="sendChat()" id="chatSendBtn"><i class="bi bi-send-fill"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="chart-card mb-3">
+            <div class="chart-title mb-2" style="font-size:13px">API key (Claude)</div>
+            <input type="password" class="form-control form-control-sm mb-2" id="apiKeyInput" placeholder="sk-ant-api03-...">
+            <div style="font-size:11px;color:var(--bs-secondary-color)">Your API key is used only for this session and never stored. Get one at console.anthropic.com</div>
+          </div>
+          <div class="chart-card mb-3">
+            <div class="chart-title mb-2" style="font-size:13px">Quick questions</div>
+            <div class="d-flex flex-column gap-2">
+              <button class="btn btn-sm btn-outline-primary text-start" onclick="quickAsk('Which Indian suppliers are in the cost-competitive cluster and what is their average price?')">Which Indian suppliers are cost-competitive?</button>
+              <button class="btn btn-sm btn-outline-primary text-start" onclick="quickAsk('What is the risk of sourcing from Chinese suppliers given the anti-dumping duties?')">China sourcing risk analysis</button>
+              <button class="btn btn-sm btn-outline-primary text-start" onclick="quickAsk('What construction segments should NovoAnalytics target first based on the cluster analysis?')">Which segments to target first?</button>
+              <button class="btn btn-sm btn-outline-primary text-start" onclick="quickAsk('Calculate the savings from switching 30% of aluminium procurement from China to India for a project needing 500 tonnes.')">Savings on 500 tonne order</button>
+              <button class="btn btn-sm btn-outline-primary text-start" onclick="quickAsk('Explain the k-means clustering results and what they mean for procurement strategy')">Explain clustering results</button>
+            </div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title mb-2" style="font-size:13px">AI dataset analyser</div>
+            <select class="form-select form-select-sm mb-2" id="analyseDatasetSelect">
+              {% for key, ds in datasets.items %}<option value="{{ key }}">{{ ds.label }}</option>{% endfor %}
+            </select>
+            <button class="btn btn-sm btn-success w-100" onclick="analyseDataset()"><i class="bi bi-cpu me-1"></i>Analyse with AI</button>
+            <div id="analysisResult" class="mt-2" style="font-size:12px;line-height:1.6;display:none"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── IMPORTS ── -->
+    <!-- IMPORTS -->
     <div class="tab-pane" id="tab-imports">
       <div class="row g-3">
-        <div class="col-12">
-          <div class="chart-card real-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">All aluminium product imports 2024 — weight (tonnes)</div><div class="chart-sub">Source: Australian Aluminium Council / ABS</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span>
-            </div>
-            <div class="chart-wrap" style="height:300px"><canvas id="importProductChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-card h-100 real-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">H1 vs H2 2024 import value (AUD M)</div><div class="chart-sub">Key product categories comparison</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span>
-            </div>
-            <div class="chart-legend" id="legend-h1h2"></div>
-            <div class="chart-wrap" style="height:260px"><canvas id="importH1H2Chart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-card h-100">
-            <div class="chart-card-header">
-              <div><div class="chart-title">Extrusions opportunity sizing</div><div class="chart-sub">Anti-dumping impact analysis</div></div>
-            </div>
-            <div class="mt-3">
-              <div class="mb-3"><div class="d-flex justify-content-between mb-1" style="font-size:12px"><span class="text-muted">Extrusions share of total semifab imports</span><strong>29.3%</strong></div><div class="progress" style="height:10px"><div class="progress-bar bg-primary" style="width:29.3%"></div></div></div>
-              <div class="mb-3"><div class="d-flex justify-content-between mb-1" style="font-size:12px"><span class="text-muted">Extrusions share of total Al imports (value)</span><strong>28.7%</strong></div><div class="progress" style="height:10px"><div class="progress-bar bg-info" style="width:28.7%"></div></div></div>
-              <div class="mb-3"><div class="d-flex justify-content-between mb-1" style="font-size:12px"><span class="text-muted">Potential India shift (10% of extrusions)</span><strong>~9,148 t</strong></div><div class="progress" style="height:10px"><div class="progress-bar bg-success" style="width:10%"></div></div></div>
-              <div class="insight-box mt-3">
-                <div class="fw-500 mb-1" style="font-size:13px"><i class="bi bi-cpu text-primary me-1"></i>AI Platform Saving on Extrusions</div>
-                <div class="text-muted" style="font-size:12px;line-height:1.7">5% saving on A$544.9M = <strong class="text-success">A$27.2M</strong><br>8% saving on A$544.9M = <strong class="text-success">A$43.6M</strong></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="col-12"><div class="chart-card real-card"><div class="chart-card-header"><div><div class="chart-title">All aluminium product imports 2024 — weight (tonnes)</div><div class="chart-sub">Source: Australian Aluminium Council / ABS</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span></div><div class="chart-wrap" style="height:300px"><canvas id="importProductChart"></canvas></div></div></div>
+        <div class="col-md-6"><div class="chart-card h-100 real-card"><div class="chart-card-header"><div><div class="chart-title">H1 vs H2 2024 import value (AUD M)</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real</span></div><div class="chart-legend" id="legend-h1h2"></div><div class="chart-wrap" style="height:260px"><canvas id="importH1H2Chart"></canvas></div></div></div>
+        <div class="col-md-6"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">Extrusions opportunity sizing</div></div></div><div class="mt-3">
+          <div class="mb-3"><div class="d-flex justify-content-between mb-1" style="font-size:12px"><span class="text-muted">Extrusions share of total semifab imports</span><strong>29.3%</strong></div><div class="progress" style="height:10px"><div class="progress-bar bg-primary" style="width:29.3%"></div></div></div>
+          <div class="mb-3"><div class="d-flex justify-content-between mb-1" style="font-size:12px"><span class="text-muted">5% AI saving on A$544.9M extrusions</span><strong class="text-success">A$27.2M</strong></div><div class="progress" style="height:10px"><div class="progress-bar bg-success" style="width:70%"></div></div></div>
+          <div class="insight-box mt-3"><div style="font-size:12px;line-height:1.7">Anti-dumping duties on China (ADN 2023/051) opened <strong>A$544.9M</strong> of extrusion imports to alternative suppliers. K-Means Cluster 1 (Cost-competitive India) — average price <strong>$1.95/kg</strong> — is the primary recommended sourcing alternative.</div></div>
+        </div></div></div>
       </div>
     </div>
 
-    <!-- ── PRICES ── -->
+    <!-- PRICES -->
     <div class="tab-pane" id="tab-prices">
       <div class="row g-3">
-        <div class="col-12">
-          <div class="chart-card real-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">LME aluminium price history 2019–2024</div><div class="chart-sub">Annual average USD/tonne vs AUD/tonne — LME / World Bank</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span>
-            </div>
-            <div class="chart-legend" id="legend-lme"></div>
-            <div class="chart-wrap" style="height:280px"><canvas id="lmeFullChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-card h-100 real-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">YoY price volatility</div><div class="chart-sub">% change per year — LME</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real</span>
-            </div>
-            <div class="chart-wrap" style="height:240px"><canvas id="priceChangeChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-card h-100">
-            <div class="chart-card-header">
-              <div><div class="chart-title">China vs India landed cost (AUD/kg)</div><div class="chart-sub">2022–2024 quarterly comparison</div></div>
-              <span class="badge-source est">Estimated</span>
-            </div>
-            <div class="chart-legend" id="legend-compare"></div>
-            <div class="chart-wrap" style="height:240px"><canvas id="priceCompareChart"></canvas></div>
-          </div>
-        </div>
+        <div class="col-12"><div class="chart-card real-card"><div class="chart-card-header"><div><div class="chart-title">LME aluminium price history 2019–2024</div><div class="chart-sub">Annual average USD/tonne vs AUD/tonne — LME / World Bank</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span></div><div class="chart-legend" id="legend-lme"></div><div class="chart-wrap" style="height:280px"><canvas id="lmeFullChart"></canvas></div></div></div>
+        <div class="col-md-6"><div class="chart-card h-100 real-card"><div class="chart-card-header"><div><div class="chart-title">YoY price volatility (%)</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real</span></div><div class="chart-wrap" style="height:240px"><canvas id="priceChangeChart"></canvas></div></div></div>
+        <div class="col-md-6"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">China vs India landed cost (AUD/kg)</div><div class="chart-sub">Quarterly 2022–2024</div></div><span class="badge-source est">Estimated</span></div><div class="chart-legend" id="legend-compare"></div><div class="chart-wrap" style="height:240px"><canvas id="priceCompareChart"></canvas></div></div></div>
       </div>
     </div>
 
-    <!-- ── SUPPLIERS ── -->
+    <!-- SUPPLIERS -->
     <div class="tab-pane" id="tab-suppliers">
       <div class="row g-3">
-        <div class="col-md-7">
-          <div class="chart-card h-100">
-            <div class="chart-card-header">
-              <div><div class="chart-title">India supplier capacity (000 MT/year)</div><div class="chart-sub">Annual production capacity by major supplier</div></div>
-              <span class="badge-source est">Estimated</span>
-            </div>
-            <div class="chart-wrap" style="height:300px"><canvas id="supplierCapChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-md-5">
-          <div class="chart-card h-100">
-            <div class="chart-card-header">
-              <div><div class="chart-title">Risk score vs price matrix</div><div class="chart-sub">AI reliability score vs export price</div></div>
-            </div>
-            <div class="chart-wrap" style="height:300px"><canvas id="supplierScatterChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="chart-card real-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">India aluminium export growth</div><div class="chart-sub">Annual shipment volumes — exportimportdata.in</div></div>
-              <span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real data</span>
-            </div>
-            <div class="chart-wrap" style="height:220px"><canvas id="indiaGrowthChart"></canvas></div>
-          </div>
-        </div>
+        <div class="col-md-7"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">India supplier capacity (000 MT/year)</div></div><span class="badge-source est">Estimated</span></div><div class="chart-wrap" style="height:300px"><canvas id="supplierCapChart"></canvas></div></div></div>
+        <div class="col-md-5"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">Risk score vs price</div><div class="chart-sub">AI reliability vs export price</div></div></div><div class="chart-wrap" style="height:300px"><canvas id="supplierScatterChart"></canvas></div></div></div>
+        <div class="col-12"><div class="chart-card real-card"><div class="chart-card-header"><div><div class="chart-title">India aluminium export growth (shipments)</div><div class="chart-sub">exportimportdata.in</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real</span></div><div class="chart-wrap" style="height:220px"><canvas id="indiaGrowthChart"></canvas></div></div></div>
       </div>
     </div>
 
-    <!-- ── MARKET ── -->
+    <!-- MARKET -->
     <div class="tab-pane" id="tab-market">
       <div class="row g-3">
-        <div class="col-md-5"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">AU construction Al demand</div><div class="chart-sub">Market share by segment</div></div><span class="badge-source est">Estimated</span></div><div class="chart-legend" id="legend-market"></div><div class="chart-wrap" style="height:280px"><canvas id="marketMixChart"></canvas></div></div></div>
-        <div class="col-md-7"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">Demand vs growth rate by segment</div><div class="chart-sub">Bubble size = demand volume (MT)</div></div></div><div class="chart-wrap" style="height:280px"><canvas id="marketBubbleChart"></canvas></div></div></div>
+        <div class="col-md-5"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">AU construction Al demand</div></div><span class="badge-source est">Estimated</span></div><div class="chart-legend" id="legend-market"></div><div class="chart-wrap" style="height:280px"><canvas id="marketMixChart"></canvas></div></div></div>
+        <div class="col-md-7"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">Demand vs growth rate by segment</div></div></div><div class="chart-wrap" style="height:280px"><canvas id="marketBubbleChart"></canvas></div></div></div>
         <div class="col-12"><div class="chart-card"><div class="chart-card-header"><div><div class="chart-title">Segment demand and growth rate</div></div></div><div class="chart-legend" id="legend-segdem"></div><div class="chart-wrap" style="height:220px"><canvas id="segmentDemandChart"></canvas></div></div></div>
       </div>
     </div>
 
-    <!-- ── COST ── -->
+    <!-- COST -->
     <div class="tab-pane" id="tab-cost">
       <div class="row g-3 mb-3">
-        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-currency-dollar"></i></div><div class="kpi-label">Total Without AI (per 100MT)</div><div class="kpi-value">A$575K</div></div></div>
-        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-cpu"></i></div><div class="kpi-label">Total With AI Platform</div><div class="kpi-value text-success">A$471K</div></div></div>
-        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-piggy-bank"></i></div><div class="kpi-label">Total Saving Per 100MT</div><div class="kpi-value text-success">A$104K</div></div></div>
-        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-percent"></i></div><div class="kpi-label">Overall Cost Reduction</div><div class="kpi-value text-success">18.1%</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-currency-dollar"></i></div><div class="kpi-label">Without AI (per 100MT)</div><div class="kpi-value">A$575K</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-cpu"></i></div><div class="kpi-label">With AI Platform</div><div class="kpi-value text-success">A$471K</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-piggy-bank"></i></div><div class="kpi-label">Total Saving</div><div class="kpi-value text-success">A$104K</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-percent"></i></div><div class="kpi-label">Cost Reduction</div><div class="kpi-value text-success">18.1%</div></div></div>
       </div>
       <div class="row g-3">
-        <div class="col-md-8"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">Cost comparison: with vs without AI platform</div><div class="chart-sub">Per 100MT procurement cycle (AUD)</div></div><span class="badge-source est">Estimated</span></div><div class="chart-legend" id="legend-cost"></div><div class="chart-wrap" style="height:300px"><canvas id="costBenefitChart"></canvas></div></div></div>
-        <div class="col-md-4"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">Saving distribution</div><div class="chart-sub">By cost category</div></div></div><div class="chart-wrap" style="height:300px"><canvas id="savingMixChart"></canvas></div></div></div>
-        <div class="col-12"><div class="insight-alert"><i class="bi bi-cpu me-2 text-primary"></i><strong>Platform ROI:</strong> At 91,480 tonnes of extrusion imports per year, a conservative 5% procurement saving = <strong class="text-success">A$27.2M annually</strong>.</div></div>
+        <div class="col-md-8"><div class="chart-card"><div class="chart-card-header"><div><div class="chart-title">Cost comparison: with vs without AI</div></div><span class="badge-source est">Estimated</span></div><div class="chart-legend" id="legend-cost"></div><div class="chart-wrap" style="height:300px"><canvas id="costBenefitChart"></canvas></div></div></div>
+        <div class="col-md-4"><div class="chart-card"><div class="chart-card-header"><div><div class="chart-title">Saving distribution</div></div></div><div class="chart-wrap" style="height:300px"><canvas id="savingMixChart"></canvas></div></div></div>
       </div>
     </div>
 
-    <!-- ── RISK ── -->
+    <!-- RISK -->
     <div class="tab-pane" id="tab-risk">
       <div class="row g-3 mb-3">
         <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-danger"><i class="bi bi-exclamation-octagon"></i></div><div class="kpi-label">High Impact Risks</div><div class="kpi-value text-danger">5</div></div></div>
         <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon" style="color:#fd7e14"><i class="bi bi-exclamation-triangle"></i></div><div class="kpi-label">Medium Risks</div><div class="kpi-value" style="color:#fd7e14">5</div></div></div>
-        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-success"><i class="bi bi-shield-check"></i></div><div class="kpi-label">AI-Mitigable Risks</div><div class="kpi-value text-success">10/12</div></div></div>
-        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-danger"><i class="bi bi-building-x"></i></div><div class="kpi-label">China Dumping Status</div><div class="kpi-value text-danger" style="font-size:18px">ACTIVE</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-success"><i class="bi bi-shield-check"></i></div><div class="kpi-label">AI-Mitigable</div><div class="kpi-value text-success">10/12</div></div></div>
+        <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-danger"><i class="bi bi-building-x"></i></div><div class="kpi-label">China Dumping</div><div class="kpi-value text-danger" style="font-size:16px">ACTIVE</div></div></div>
       </div>
       <div class="row g-3">
-        <div class="col-md-8"><div class="chart-card real-card h-100"><div class="chart-card-header"><div><div class="chart-title">Risk heatmap — impact vs probability</div><div class="chart-sub">Bubble size = relative severity</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real</span></div><div class="chart-wrap" style="height:300px"><canvas id="riskHeatmapChart"></canvas></div></div></div>
+        <div class="col-md-8"><div class="chart-card real-card h-100"><div class="chart-card-header"><div><div class="chart-title">Risk heatmap — impact vs probability</div></div><span class="badge-source real"><i class="bi bi-patch-check-fill me-1"></i>Real</span></div><div class="chart-wrap" style="height:300px"><canvas id="riskHeatmapChart"></canvas></div></div></div>
         <div class="col-md-4"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">Risks by category</div></div></div><div class="chart-legend" id="legend-riskcat"></div><div class="chart-wrap" style="height:300px"><canvas id="riskCatChart"></canvas></div></div></div>
-        <div class="col-12"><div class="chart-card"><div class="chart-card-header"><div><div class="chart-title">AI platform risk mitigation coverage</div><div class="chart-sub">Risk severity vs platform AI coverage</div></div></div><div class="chart-legend" id="legend-radar"></div><div class="chart-wrap" style="height:280px"><canvas id="riskRadarChart"></canvas></div></div></div>
+        <div class="col-12"><div class="chart-card"><div class="chart-card-header"><div><div class="chart-title">AI platform risk mitigation coverage</div></div></div><div class="chart-legend" id="legend-radar"></div><div class="chart-wrap" style="height:280px"><canvas id="riskRadarChart"></canvas></div></div></div>
       </div>
     </div>
 
-    <!-- ── OPPORTUNITY SCORING ── -->
+    <!-- OPPORTUNITY -->
     <div class="tab-pane" id="tab-opportunity">
-      <div class="insight-alert mb-4" style="border-color:#ff9933;background:#fff8f0">
-        <i class="bi bi-trophy-fill me-2" style="color:#ff9933"></i>
-        <strong>Opportunity Score Model:</strong> Six weighted dimensions — Price Competitiveness (28%), Trade Policy (22%), Supply Reliability (20%), Logistics Ease (12%), Market Growth (10%), AI Platform Fit (8%) — produce a composite score per country, per year. <strong style="color:#198754">India is ranked #1 in 2024</strong> with a score of 8.73/10.
-      </div>
-
       <div class="row g-3 mb-3" id="countryScoreCards"></div>
-
       <div class="row g-3">
-        <div class="col-12">
-          <div class="chart-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">Country opportunity score trend 2019–2024</div><div class="chart-sub">Composite weighted score (0–10) — Novoanalytics scoring model</div></div>
-              <div class="d-flex gap-2 align-items-center flex-wrap">
-                <span class="badge-source est">Model</span>
-                <select class="form-select form-select-sm" id="scoreYearFilter" style="width:auto;font-size:12px" onchange="updateOpportunityCharts()">
-                  <option value="all">All years</option>
-                  <option value="2019">2019</option><option value="2020">2020</option>
-                  <option value="2021">2021</option><option value="2022">2022</option>
-                  <option value="2023">2023</option><option value="2024" selected>2024</option>
-                </select>
-              </div>
-            </div>
-            <div class="chart-legend" id="legend-optrend"></div>
-            <div class="chart-wrap" style="height:300px"><canvas id="oppTrendChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-card h-100">
-            <div class="chart-card-header">
-              <div><div class="chart-title">2024 country ranking — overall score</div><div class="chart-sub">Composite score comparison for selected year</div></div>
-            </div>
-            <div class="chart-wrap" style="height:280px"><canvas id="oppRankChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="chart-card h-100">
-            <div class="chart-card-header">
-              <div><div class="chart-title">India — score breakdown by dimension</div><div class="chart-sub">Six dimensions contributing to opportunity score</div></div>
-            </div>
-            <div class="chart-legend" id="legend-indiadim"></div>
-            <div class="chart-wrap" style="height:280px"><canvas id="indiaDimChart"></canvas></div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="chart-card">
-            <div class="chart-card-header">
-              <div><div class="chart-title">India vs China — score divergence over time</div><div class="chart-sub">India rising, China declining — gap widening since 2021</div></div>
-            </div>
-            <div class="chart-legend" id="legend-diverge"></div>
-            <div class="chart-wrap" style="height:220px"><canvas id="oppDivergeChart"></canvas></div>
-          </div>
-        </div>
+        <div class="col-12"><div class="chart-card"><div class="chart-card-header"><div><div class="chart-title">Country opportunity score trend 2019–2024</div><div class="chart-sub">Composite weighted score (0–10)</div></div><div class="d-flex gap-2 align-items-center"><span class="badge-source est">Model</span><select class="form-select form-select-sm" id="scoreYearFilter" style="width:auto;font-size:12px" onchange="updateOpportunityCharts()"><option value="all">All years</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024" selected>2024</option></select></div></div><div class="chart-legend" id="legend-optrend"></div><div class="chart-wrap" style="height:300px"><canvas id="oppTrendChart"></canvas></div></div></div>
+        <div class="col-md-6"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">2024 country ranking</div></div></div><div class="chart-wrap" style="height:280px"><canvas id="oppRankChart"></canvas></div></div></div>
+        <div class="col-md-6"><div class="chart-card h-100"><div class="chart-card-header"><div><div class="chart-title">India vs China score divergence</div></div></div><div class="chart-legend" id="legend-diverge"></div><div class="chart-wrap" style="height:280px"><canvas id="oppDivergeChart"></canvas></div></div></div>
       </div>
     </div>
 
-    <!-- ── INDIA PROFIT CALCULATOR ── -->
+    <!-- PROFIT CALC -->
     <div class="tab-pane" id="tab-profit">
-      <div class="insight-alert mb-4" style="border-color:#198754;background:#f0faf5">
-        <i class="bi bi-currency-dollar me-2 text-success"></i>
-        <strong>India Profit Calculator:</strong> Set the India FOB price, your AU sell price, and volume to instantly see landed cost, profit margin, and how much cheaper India is vs China. The shaded area on the chart shows the India profit zone above breakeven.
-      </div>
-
       <div class="row g-4">
-        <!-- Controls -->
         <div class="col-md-4">
           <div class="chart-card h-100">
-            <div class="chart-title mb-3"><i class="bi bi-sliders me-2 text-primary"></i>Price Parameters</div>
-
-            <div class="mb-3">
-              <label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">India FOB Price (USD/kg)</span><strong id="lbl_india_fob">$2.30</strong></label>
-              <input type="range" class="form-range" id="sl_india_fob" min="1.50" max="3.50" step="0.05" value="2.30" oninput="updateProfitCalc()">
-              <div class="d-flex justify-content-between" style="font-size:10px;color:#aab1c0"><span>$1.50</span><span>$3.50</span></div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">Your AU Sell Price (AUD/kg)</span><strong id="lbl_sell_price">$4.50</strong></label>
-              <input type="range" class="form-range" id="sl_sell_price" min="2.50" max="7.00" step="0.05" value="4.50" oninput="updateProfitCalc()">
-              <div class="d-flex justify-content-between" style="font-size:10px;color:#aab1c0"><span>$2.50</span><span>$7.00</span></div>
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">Freight (USD/kg)</span><strong id="lbl_freight">$0.25</strong></label>
-              <input type="range" class="form-range" id="sl_freight" min="0.10" max="0.60" step="0.01" value="0.25" oninput="updateProfitCalc()">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">Anti-Dumping / Duties (USD/kg)</span><strong id="lbl_duty">$0.00</strong></label>
-              <input type="range" class="form-range" id="sl_duty" min="0.00" max="0.50" step="0.01" value="0.00" oninput="updateProfitCalc()">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">AUD/USD Rate</span><strong id="lbl_audusd">0.65</strong></label>
-              <input type="range" class="form-range" id="sl_audusd" min="0.55" max="0.85" step="0.01" value="0.65" oninput="updateProfitCalc()">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">Volume (MT)</span><strong id="lbl_volume">100</strong></label>
-              <input type="range" class="form-range" id="sl_volume" min="10" max="1000" step="10" value="100" oninput="updateProfitCalc()">
-              <div class="d-flex justify-content-between" style="font-size:10px;color:#aab1c0"><span>10 MT</span><span>1,000 MT</span></div>
-            </div>
+            <div class="chart-title mb-3"><i class="bi bi-sliders me-2 text-primary"></i>Price parameters</div>
+            {% for s1 in "123456" %}
+    		{{ s1 }}
+	{% endfor %}
+            <div class="mb-3"><label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">India FOB (USD/kg)</span><strong id="lbl_india_fob">$2.30</strong></label><input type="range" class="form-range" id="sl_india_fob" min="1.50" max="3.50" step="0.05" value="2.30" oninput="updateProfitCalc()"></div>
+            <div class="mb-3"><label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">AU Sell Price (AUD/kg)</span><strong id="lbl_sell_price">$4.50</strong></label><input type="range" class="form-range" id="sl_sell_price" min="2.50" max="7.00" step="0.05" value="4.50" oninput="updateProfitCalc()"></div>
+            <div class="mb-3"><label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">Freight (USD/kg)</span><strong id="lbl_freight">$0.25</strong></label><input type="range" class="form-range" id="sl_freight" min="0.10" max="0.60" step="0.01" value="0.25" oninput="updateProfitCalc()"></div>
+            <div class="mb-3"><label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">Duties (USD/kg)</span><strong id="lbl_duty">$0.00</strong></label><input type="range" class="form-range" id="sl_duty" min="0.00" max="0.50" step="0.01" value="0.00" oninput="updateProfitCalc()"></div>
+            <div class="mb-3"><label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">AUD/USD Rate</span><strong id="lbl_audusd">0.65</strong></label><input type="range" class="form-range" id="sl_audusd" min="0.55" max="0.85" step="0.01" value="0.65" oninput="updateProfitCalc()"></div>
+            <div class="mb-3"><label class="form-label d-flex justify-content-between" style="font-size:12px"><span class="text-muted">Volume (MT)</span><strong id="lbl_volume">100 MT</strong></label><input type="range" class="form-range" id="sl_volume" min="10" max="1000" step="10" value="100" oninput="updateProfitCalc()"></div>
           </div>
         </div>
-
-        <!-- Results -->
         <div class="col-md-8">
           <div class="row g-3 mb-3">
-            <div class="col-6 col-md-3">
-              <div class="kpi-card" id="res_landed_aud">
-                <div class="kpi-icon"><i class="bi bi-box-arrow-in-down"></i></div>
-                <div class="kpi-label">India Landed (AUD/kg)</div>
-                <div class="kpi-value" id="val_landed">—</div>
-              </div>
-            </div>
-            <div class="col-6 col-md-3">
-              <div class="kpi-card">
-                <div class="kpi-icon text-success"><i class="bi bi-graph-up-arrow"></i></div>
-                <div class="kpi-label">Profit per kg (AUD)</div>
-                <div class="kpi-value text-success" id="val_profit_kg">—</div>
-              </div>
-            </div>
-            <div class="col-6 col-md-3">
-              <div class="kpi-card">
-                <div class="kpi-icon text-success"><i class="bi bi-percent"></i></div>
-                <div class="kpi-label">Gross Margin</div>
-                <div class="kpi-value text-success" id="val_margin">—</div>
-              </div>
-            </div>
-            <div class="col-6 col-md-3">
-              <div class="kpi-card">
-                <div class="kpi-icon text-success"><i class="bi bi-cash-stack"></i></div>
-                <div class="kpi-label">Total Profit (AUD)</div>
-                <div class="kpi-value text-success" id="val_total_profit">—</div>
-              </div>
-            </div>
+            <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon"><i class="bi bi-box-arrow-in-down"></i></div><div class="kpi-label">Landed (AUD/kg)</div><div class="kpi-value" id="val_landed">—</div></div></div>
+            <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-success"><i class="bi bi-graph-up-arrow"></i></div><div class="kpi-label">Profit/kg (AUD)</div><div class="kpi-value text-success" id="val_profit_kg">—</div></div></div>
+            <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-success"><i class="bi bi-percent"></i></div><div class="kpi-label">Gross Margin</div><div class="kpi-value text-success" id="val_margin">—</div></div></div>
+            <div class="col-6 col-md-3"><div class="kpi-card"><div class="kpi-icon text-success"><i class="bi bi-cash-stack"></i></div><div class="kpi-label">Total Profit (AUD)</div><div class="kpi-value text-success" id="val_total_profit">—</div></div></div>
           </div>
-
-          <div class="chart-card mb-3">
-            <div class="chart-card-header">
-              <div><div class="chart-title">India profit zone — quarterly 2022–2024</div><div class="chart-sub">Green shaded area = India profit above breakeven sell price</div></div>
-            </div>
-            <div class="chart-wrap" style="height:260px"><canvas id="profitZoneChart"></canvas></div>
-          </div>
-
+          <div class="chart-card mb-3"><div class="chart-card-header"><div><div class="chart-title">India profit zone — quarterly 2022–2024</div></div></div><div class="chart-wrap" style="height:260px"><canvas id="profitZoneChart"></canvas></div></div>
           <div class="row g-3">
-            <div class="col-md-6">
-              <div class="chart-card h-100">
-                <div class="chart-card-header"><div><div class="chart-title">Cost waterfall (per kg, AUD)</div><div class="chart-sub">India vs China landed cost breakdown</div></div></div>
-                <div class="chart-wrap" style="height:220px"><canvas id="waterfallChart"></canvas></div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="chart-card h-100">
-                <div class="chart-title mb-3"><i class="bi bi-calculator me-2 text-primary"></i>Cost Breakdown</div>
-                <div id="profitBreakdown" style="font-size:12px"></div>
-                <div class="mt-3 p-3 rounded" id="advantageBox" style="background:#f0faf5;border:1px solid #a3d9b8"></div>
-              </div>
-            </div>
+            <div class="col-md-6"><div class="chart-card"><div class="chart-card-header"><div><div class="chart-title">Cost waterfall (AUD/kg)</div></div></div><div class="chart-wrap" style="height:220px"><canvas id="waterfallChart"></canvas></div></div></div>
+            <div class="col-md-6"><div class="chart-card"><div class="chart-title mb-2" style="font-size:13px">Breakdown</div><div id="profitBreakdown" style="font-size:12px"></div><div class="mt-2" id="advantageBox" style="font-size:12px;padding:10px;border-radius:8px;background:#f0faf5;border:1px solid #a3d9b8"></div></div></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ── DATA TABLES ── -->
+    <!-- DATA TABLES -->
     <div class="tab-pane" id="tab-data">
       <div class="chart-card">
         <div class="chart-card-header flex-wrap gap-2">
-          <div><div class="chart-title">Data table viewer</div><div class="chart-sub">Browse all datasets — click any column header to sort</div></div>
-          <div class="d-flex gap-2 flex-wrap">
-            <select class="form-select form-select-sm" id="tableDatasetSelect" style="width:auto">
-              {% for key, ds in datasets.items %}
-              <option value="{{ key }}">{{ ds.label }}</option>
-              {% endfor %}
-            </select>
-            <button class="btn btn-sm btn-outline-secondary" id="exportCsvBtn"><i class="bi bi-download me-1"></i>Export CSV</button>
+          <div><div class="chart-title">Data table viewer</div><div class="chart-sub">Click any column header to sort</div></div>
+          <div class="d-flex gap-2">
+            <select class="form-select form-select-sm" id="tableDatasetSelect" style="width:auto">{% for key, ds in datasets.items %}<option value="{{ key }}">{{ ds.label }}</option>{% endfor %}</select>
+            <button class="btn btn-sm btn-outline-secondary" id="exportCsvBtn"><i class="bi bi-download me-1"></i>CSV</button>
           </div>
         </div>
-        <div id="tableSourceBadge" class="mb-3"></div>
-        <div class="table-responsive">
-          <table class="table table-sm table-hover data-table" id="mainDataTable">
-            <thead id="tableHead"></thead>
-            <tbody id="tableBody"></tbody>
-          </table>
-        </div>
-        <div id="tableInfo" class="text-muted mt-2" style="font-size:12px"></div>
+        <div id="tableSourceBadge" class="mb-2"></div>
+        <div class="table-responsive"><table class="table table-sm table-hover data-table"><thead id="tableHead"></thead><tbody id="tableBody"></tbody></table></div>
+        <div id="tableInfo" class="text-muted mt-1" style="font-size:11px"></div>
       </div>
     </div>
 
@@ -498,17 +335,14 @@
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
   <div id="uploadToast" class="toast align-items-center text-bg-success border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body" id="toastMsg">File uploaded successfully!</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-    </div>
+    <div class="d-flex"><div class="toast-body" id="toastMsg">Uploaded!</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>
   </div>
 </div>
 
 <script>
-  const OPPORTUNITY_DATA = {{ opportunity_data_json|safe }};
-  const INDIA_PRICE_DATA = {{ india_price_json|safe }};
-  const DIM_WEIGHTS = {{ dimension_weights_json|safe }};
+const OPPORTUNITY_DATA = {{ opportunity_data_json|safe }};
+const INDIA_PRICE_DATA = {{ india_price_json|safe }};
+const DIM_WEIGHTS = {{ dimension_weights_json|safe }};
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>

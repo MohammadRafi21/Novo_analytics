@@ -155,3 +155,27 @@ body { margin:0; font-family:var(--font-main); font-size:14px; background:#f4f6f
   .sidebar.open { transform:translateX(0); }
   .main-content { margin-left:0; }
 }
+
+/* K-Means & AI additions */
+.nav-highlight { background: linear-gradient(90deg,rgba(111,66,193,.08),transparent) !important; border-left: 3px solid #6f42c1; }
+.nav-highlight.active, .nav-highlight:hover { background: #f3f0ff !important; color: #6f42c1 !important; }
+.ds-dot.ml { background: #6f42c1; }
+.badge-type.ml { background: #ede9fe; color: #4c1d95; }
+
+/* Chat */
+.chat-msg { display: flex; }
+.chat-msg.assistant { justify-content: flex-start; }
+.chat-msg.user { justify-content: flex-end; }
+.chat-bubble { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.6; }
+.chat-msg.assistant .chat-bubble { background: var(--bs-secondary-bg, #f8f9fa); border: 0.5px solid var(--bs-border-color); border-radius: 4px 12px 12px 12px; }
+.chat-msg.user .chat-bubble { background: #0d6efd; color: #fff; border-radius: 12px 4px 12px 12px; }
+
+/* Score cards */
+.score-card { background: #fff; border: 1px solid #e8eaf0; border-radius: 12px; padding: 14px; text-align: center; transition: all .2s; }
+.score-card.rank-1 { border-color: #ff9933; background: linear-gradient(180deg,#fff8f0 0%,#fff 50px); }
+.score-flag { font-size: 11px; font-weight: 700; letter-spacing: .08em; margin-bottom: 4px; color: var(--bs-secondary-color); }
+.score-country { font-family: var(--font-display,'Space Grotesk',sans-serif); font-weight: 700; font-size: 13px; }
+.score-value { font-family: var(--font-display,'Space Grotesk',sans-serif); font-size: 26px; font-weight: 700; line-height: 1.1; }
+.score-bar-wrap { background: #f4f6fa; border-radius: 6px; height: 7px; margin: 8px 0 4px; overflow: hidden; }
+.score-bar { height: 100%; border-radius: 6px; transition: width .4s ease; }
+.score-rank { font-size: 10px; color: #aab1c0; }
